@@ -42,7 +42,6 @@
   <ItemGroup>
     <Compile Include="MenuItem.cs" />
     <Compile Include="Ingredient.cs" />
-    <Compile Include="Menu.cs" />
     <Compile Include="NutritionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

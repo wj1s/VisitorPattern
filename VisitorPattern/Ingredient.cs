@@ -9,6 +9,13 @@
             Nutrition = nutrition;
         }
 
+        # region main action
+                public void AddToPot() {}
+                public void AddWater() {}
+                public void AddOil() {}
+                public void Smell() {}
+        # endregion
+
         public int GetHealthRating()
         {
             return Nutrition.HealthRating;
@@ -19,7 +26,7 @@
             return Nutrition.Calories;
         }
 
-        public int GetProtein()
+        public decimal GetProtein()
         {
             return Nutrition.Protein;
         }

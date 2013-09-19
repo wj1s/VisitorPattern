@@ -6,11 +6,22 @@ namespace VisitorPattern
     public class MenuItem
     {
         private List<Ingredient> Ingredients { get; set; }
+        private int CookFactor { get; set; }
 
-        public MenuItem(List<Ingredient> ingredients)
+        public MenuItem(List<Ingredient> ingredients, int cookFactor)
         {
             Ingredients = ingredients;
+            CookFactor = cookFactor;
         }
+
+        # region main action
+                public void AddToPot() { }
+                public void AddWater() { }
+                public void AddOil() { }
+                public void Smell() { }
+                public void Cook() { }
+                public void Simmer() { }
+        # endregion
 
         public int GetHealthRating()
         {
@@ -19,12 +30,12 @@ namespace VisitorPattern
 
         public int GetCalories()
         {
-            return Ingredients.Sum(i => i.GetCalories()) * 2;
+            return Ingredients.Sum(i => i.GetCalories()) + 10;
         }
 
-        public int GetProtein()
+        public decimal GetProtein()
         {
-            return Ingredients.Sum(i => i.GetProtein());
+            return Ingredients.Sum(i => (i.GetProtein() + CookFactor)/2);
         }
     }
 }
