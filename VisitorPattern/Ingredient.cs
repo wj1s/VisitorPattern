@@ -18,6 +18,7 @@
 
         public int GetHealthRating()
         {
+            Smell();
             return Nutrition.HealthRating;
         }
 

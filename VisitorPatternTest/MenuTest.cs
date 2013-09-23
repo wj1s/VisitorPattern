@@ -8,7 +8,7 @@ namespace VisitorPatternTest
     {
         private static readonly Ingredient flour = CreateFlour();
         private static readonly Ingredient yolk = CreateYolk();
-        private readonly MenuItem moonCake = CreateMoonCake(flour, yolk);
+        private static readonly MenuItem moonCake = CreateMoonCake();
 
         [Fact]
         public void should_calc_health_rating_Ingredient()
@@ -70,7 +70,7 @@ namespace VisitorPatternTest
             return new Ingredient(nutrition);
         }
 
-        private static MenuItem CreateMoonCake(Ingredient flour, Ingredient yolk)
+        private static MenuItem CreateMoonCake()
         {
             var ingredients = new List<Ingredient> {flour, yolk};
             var menuItem = new MenuItem(ingredients, 1);

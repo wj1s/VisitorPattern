@@ -19,8 +19,8 @@ namespace VisitorPattern
                 public void AddWater() { }
                 public void AddOil() { }
                 public void Smell() { }
+                public void Taste() { }
                 public void Cook() { }
-                public void Simmer() { }
         # endregion
 
         public int GetHealthRating()
