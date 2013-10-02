@@ -2,7 +2,7 @@
 {
     public class Ingredient
     {
-        private NutritionInfo Nutrition { get; set; }
+        public NutritionInfo Nutrition { get; set; }
 
         public Ingredient(NutritionInfo nutrition)
         {
@@ -18,18 +18,17 @@
 
         public int GetHealthRating()
         {
-            Smell();
-            return Nutrition.HealthRating;
+            return new HealthRatingVisitor().VisitHealthRating(this);
         }
 
         public string GetProtein()
         {
-            return Nutrition.Protein + " g";
+            return new ProteinVisitor().VisitProtein(this);
         }
 
         public string GetCalory()
         {
-            return Nutrition.Calory + " J";
+            return new CaloryVisitor().VisitCalory(this);
         }
     }
 }
