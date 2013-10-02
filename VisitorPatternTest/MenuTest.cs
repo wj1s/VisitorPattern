@@ -13,50 +13,56 @@ namespace VisitorPatternTest
         [Fact]
         public void should_calc_health_rating_Ingredient()
         {
-            HealthRatingVisitor healthRatingVisitor = new HealthRatingVisitor();
-            flour.GetNutrition(healthRatingVisitor);
+            var healthRatingVisitor = new HealthRatingVisitor();
+            flour.Accept(healthRatingVisitor);
             Assert.Equal(1, healthRatingVisitor.HealthRating);
         }
 
         [Fact]
         public void should_calc_protein_for_Ingredient()
         {
-            ProteinVisitor proteinVisitor = new ProteinVisitor();
-            flour.GetNutrition(proteinVisitor);
+            var proteinVisitor = new ProteinVisitor();
+            flour.Accept(proteinVisitor);
             Assert.Equal("100 g", proteinVisitor.Protein);
         }
 
         [Fact]
         public void should_calc_calory_for_Ingredient()
         {
-            CaloryVisitor caloryVisitor = new CaloryVisitor();
-            flour.GetNutrition(caloryVisitor);
+            var caloryVisitor = new CaloryVisitor();
+            flour.Accept(caloryVisitor);
             Assert.Equal("10 J", caloryVisitor.Calory);
         }
 
         [Fact]
         public void should_calc_health_rating_for_MenuItem()
         {
-            Assert.Equal(2, moonCake.GetHealthRating().Count);
-            Assert.Contains(1, moonCake.GetHealthRating());
-            Assert.Contains(2, moonCake.GetHealthRating());
+            var healthRatingVisitor = new HealthRatingVisitor();
+            moonCake.Accept(healthRatingVisitor);
+            Assert.Equal(2, healthRatingVisitor.HealthRatings.Count);
+            Assert.Contains(1, healthRatingVisitor.HealthRatings);
+            Assert.Contains(2, healthRatingVisitor.HealthRatings);
         }
 
         [Fact]
         public void should_calc_protein_for_MenuItem()
         {
-            Assert.Equal(2, moonCake.GetProtein().Count);
-            Assert.Contains("100 g", moonCake.GetProtein());
-            Assert.Contains("200 g", moonCake.GetProtein());
+            var proteinVisitor = new ProteinVisitor();
+            moonCake.Accept(proteinVisitor);
+            Assert.Equal(2, proteinVisitor.Proteins.Count);
+            Assert.Contains("100 g", proteinVisitor.Proteins);
+            Assert.Contains("200 g", proteinVisitor.Proteins);
         }
 
         [Fact]
         public void should_calc_calory_for_MenuItem()
         {
-            Assert.Equal(3, moonCake.GetCalory().Count);
-            Assert.Contains("10 J", moonCake.GetCalory());
-            Assert.Contains("20 J", moonCake.GetCalory());
-            Assert.Contains("Cooking will double calories!!!", moonCake.GetCalory());
+            var caloryVisitor = new CaloryVisitor();
+            moonCake.Accept(caloryVisitor);
+            Assert.Equal(3, caloryVisitor.Calories.Count);
+            Assert.Contains("10 J", caloryVisitor.Calories);
+            Assert.Contains("20 J", caloryVisitor.Calories);
+            Assert.Contains("Cooking will double calories!!!", caloryVisitor.Calories);
         }
 
         private static Ingredient CreateFlour()

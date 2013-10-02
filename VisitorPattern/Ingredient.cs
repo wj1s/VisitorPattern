@@ -16,7 +16,7 @@
                 public void Smell() {}
         # endregion
 
-        public void GetNutrition(IVisitor visitor)
+        public void Accept(IVisitor visitor)
         {
             visitor.Visit(this);
         }

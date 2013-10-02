@@ -5,7 +5,7 @@ namespace VisitorPattern
 {
     public class ProteinVisitor : IVisitor
     {
-        private List<string> proteins;
+        public List<string> Proteins { get; private set; }
         public string Protein { get; private set; }
 
         public void Visit(Ingredient ingredient)
@@ -13,18 +13,12 @@ namespace VisitorPattern
             Protein = ingredient.Nutrition.Protein + " g";
         }
 
-        public List<string> VisitProtein(MenuItem menuItem)
-        {
-            Visit(menuItem);
-            return proteins;
-        }
-
         public void Visit(MenuItem menuItem)
         {
-            proteins = menuItem.Ingredients.Select(i =>
+            Proteins = menuItem.Ingredients.Select(i =>
                 {
                     var proteinVisitor = this;
-                    i.GetNutrition(proteinVisitor);
+                    i.Accept(proteinVisitor);
                     return proteinVisitor.Protein;
                 }).ToList();
         }

@@ -20,19 +20,9 @@ namespace VisitorPattern
                 public void Cook() { }
         # endregion
 
-        public List<int> GetHealthRating()
+        public void Accept(IVisitor visitor)
         {
-            return new HealthRatingVisitor().VisitHealthRating(this);
-        }
-
-        public List<string> GetProtein()
-        {
-            return new ProteinVisitor().VisitProtein(this);
-        }
-
-        public List<string> GetCalory()
-        {
-            return new CaloryVisitor().VisitCalory(this);
+            visitor.Visit(this);
         }
     }
 }
