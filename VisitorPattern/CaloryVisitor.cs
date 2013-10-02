@@ -5,6 +5,7 @@ namespace VisitorPattern
 {
     public class CaloryVisitor : IVisitor
     {
+        private List<string> calories;
         public string Calory { get; private set; }
 
         public void Visit(Ingredient ingredient)
@@ -14,14 +15,19 @@ namespace VisitorPattern
 
         public List<string> VisitCalory(MenuItem menuItem)
         {
-            var calory = menuItem.Ingredients.Select(i =>
+            Visit(menuItem);
+            return calories;
+        }
+
+        public void Visit(MenuItem menuItem)
+        {
+            calories = menuItem.Ingredients.Select(i =>
                 {
                     var caloryVisitor = this;
                     i.GetNutrition(caloryVisitor);
                     return caloryVisitor.Calory;
                 }).ToList();
-            calory.Add("Cooking will double calories!!!");
-            return calory;
+            calories.Add("Cooking will double calories!!!");
         }
     }
 }

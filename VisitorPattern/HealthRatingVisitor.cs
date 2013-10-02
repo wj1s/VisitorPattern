@@ -5,6 +5,7 @@ namespace VisitorPattern
 {
     public class HealthRatingVisitor : IVisitor
     {
+        private List<int> healthRatings;
         public int HealthRating { get; private set; }
 
         public void Visit(Ingredient ingredient)
@@ -15,7 +16,13 @@ namespace VisitorPattern
 
         public List<int> VisitHealthRating(MenuItem menuItem)
         {
-            return menuItem.Ingredients.Select(i =>
+            Visit(menuItem);
+            return healthRatings;
+        }
+
+        public void Visit(MenuItem menuItem)
+        {
+            healthRatings = menuItem.Ingredients.Select(i =>
                 {
                     var healthRatingVisitor = this;
                     i.GetNutrition(healthRatingVisitor);
