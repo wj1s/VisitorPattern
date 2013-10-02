@@ -17,33 +17,40 @@ namespace VisitorPatternTest
         }
 
         [Fact]
-        public void should_calc_calories_for_Ingredient()
+        public void should_calc_protein_for_Ingredient()
         {
-            Assert.Equal(10, flour.GetCalories());
+            Assert.Equal("100 g", flour.GetProtein());
         }
 
         [Fact]
-        public void should_calc_protein_for_Ingredient()
+        public void should_calc_calory_for_Ingredient()
         {
-            Assert.Equal(100, flour.GetProtein());
+            Assert.Equal("10 J", flour.GetCalory());
         }
 
         [Fact]
         public void should_calc_health_rating_for_MenuItem()
         {
-            Assert.Equal(2, moonCake.GetHealthRating());
-        }
-
-        [Fact]
-        public void should_calc_calories_for_MenuItem()
-        {
-            Assert.Equal(40, moonCake.GetCalories());
+            Assert.Equal(2, moonCake.GetHealthRating().Count);
+            Assert.Contains(1, moonCake.GetHealthRating());
+            Assert.Contains(2, moonCake.GetHealthRating());
         }
 
         [Fact]
         public void should_calc_protein_for_MenuItem()
         {
-            Assert.Equal(151, moonCake.GetProtein());
+            Assert.Equal(2, moonCake.GetProtein().Count);
+            Assert.Contains("100 g", moonCake.GetProtein());
+            Assert.Contains("200 g", moonCake.GetProtein());
+        }
+
+        [Fact]
+        public void should_calc_calory_for_MenuItem()
+        {
+            Assert.Equal(3, moonCake.GetCalory().Count);
+            Assert.Contains("10 J", moonCake.GetCalory());
+            Assert.Contains("20 J", moonCake.GetCalory());
+            Assert.Contains("Cooking will double calories!!!", moonCake.GetCalory());
         }
 
         private static Ingredient CreateFlour()
@@ -51,7 +58,7 @@ namespace VisitorPatternTest
             var nutrition = new NutritionInfo
                 {
                     HealthRating = 1, 
-                    Calories = 10, 
+                    Calory = 10, 
                     Protein = 100
                 };
 
@@ -63,7 +70,7 @@ namespace VisitorPatternTest
             var nutrition = new NutritionInfo
                 {
                     HealthRating = 2, 
-                    Calories = 20, 
+                    Calory = 20, 
                     Protein = 200
                 };
 
@@ -73,7 +80,7 @@ namespace VisitorPatternTest
         private static MenuItem CreateMoonCake()
         {
             var ingredients = new List<Ingredient> {flour, yolk};
-            var menuItem = new MenuItem(ingredients, 1);
+            var menuItem = new MenuItem(ingredients);
             return menuItem;
         }
     }

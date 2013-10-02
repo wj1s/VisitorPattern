@@ -22,14 +22,14 @@
             return Nutrition.HealthRating;
         }
 
-        public int GetCalories()
+        public string GetProtein()
         {
-            return Nutrition.Calories;
+            return Nutrition.Protein + " g";
         }
 
-        public decimal GetProtein()
+        public string GetCalory()
         {
-            return Nutrition.Protein;
+            return Nutrition.Calory + " J";
         }
     }
 }
