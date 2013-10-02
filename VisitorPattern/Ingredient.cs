@@ -2,7 +2,7 @@
 {
     public class Ingredient
     {
-        public NutritionInfo Nutrition { get; set; }
+        public NutritionInfo Nutrition { get; private set; }
 
         public Ingredient(NutritionInfo nutrition)
         {

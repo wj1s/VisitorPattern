@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace VisitorPattern
 {
@@ -8,19 +7,19 @@ namespace VisitorPattern
         public List<string> Calories { get; private set; }
         public string Calory { get; private set; }
 
+        public CaloryVisitor()
+        {
+            Calories = new List<string>();
+        }
+
         public void Visit(Ingredient ingredient)
         {
             Calory = ingredient.Nutrition.Calory + " J";
+            Calories.Add(Calory);
         }
 
         public void Visit(MenuItem menuItem)
         {
-            Calories = menuItem.Ingredients.Select(i =>
-                {
-                    var caloryVisitor = this;
-                    i.Accept(caloryVisitor);
-                    return caloryVisitor.Calory;
-                }).ToList();
             Calories.Add("Cooking will double calories!!!");
         }
     }

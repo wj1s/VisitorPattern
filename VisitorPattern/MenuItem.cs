@@ -4,7 +4,7 @@ namespace VisitorPattern
 {
     public class MenuItem
     {
-        public List<Ingredient> Ingredients { get; set; }
+        private List<Ingredient> Ingredients { get; set; }
 
         public MenuItem(List<Ingredient> ingredients)
         {
@@ -22,6 +22,7 @@ namespace VisitorPattern
 
         public void Accept(IVisitor visitor)
         {
+            Ingredients.ForEach(i => i.Accept(visitor));
             visitor.Visit(this);
         }
     }
