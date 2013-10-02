@@ -1,10 +1,18 @@
 ﻿namespace VisitorPattern
 {
-    public class ProteinVisitor
+    public class ProteinVisitor : IVisitor
     {
+        private string protein;
+
         public string VisitProtein(Ingredient ingredient)
         {
-            return ingredient.Nutrition.Protein + " g";
+            Visit(ingredient);
+            return protein;
+        }
+
+        public void Visit(Ingredient ingredient)
+        {
+            protein = ingredient.Nutrition.Protein + " g";
         }
     }
 }

@@ -1,10 +1,18 @@
 ﻿namespace VisitorPattern
 {
-    public class CaloryVisitor
+    public class CaloryVisitor : IVisitor
     {
+        private string calory;
+
         public string VisitCalory(Ingredient ingredient)
         {
-            return ingredient.Nutrition.Calory + " J";
+            Visit(ingredient);
+            return calory;
+        }
+
+        public void Visit(Ingredient ingredient)
+        {
+            calory = ingredient.Nutrition.Calory + " J";
         }
     }
 }
