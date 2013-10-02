@@ -2,17 +2,11 @@
 {
     public class ProteinVisitor : IVisitor
     {
-        private string protein;
-
-        public string VisitProtein(Ingredient ingredient)
-        {
-            Visit(ingredient);
-            return protein;
-        }
+        public string Protein { get; private set; }
 
         public void Visit(Ingredient ingredient)
         {
-            protein = ingredient.Nutrition.Protein + " g";
+            Protein = ingredient.Nutrition.Protein + " g";
         }
     }
 }

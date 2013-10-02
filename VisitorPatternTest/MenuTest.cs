@@ -13,19 +13,25 @@ namespace VisitorPatternTest
         [Fact]
         public void should_calc_health_rating_Ingredient()
         {
-            Assert.Equal(1, flour.GetHealthRating());
+            HealthRatingVisitor healthRatingVisitor = new HealthRatingVisitor();
+            flour.GetNutrition(healthRatingVisitor);
+            Assert.Equal(1, healthRatingVisitor.HealthRating);
         }
 
         [Fact]
         public void should_calc_protein_for_Ingredient()
         {
-            Assert.Equal("100 g", flour.GetProtein());
+            ProteinVisitor proteinVisitor = new ProteinVisitor();
+            flour.GetNutrition(proteinVisitor);
+            Assert.Equal("100 g", proteinVisitor.Protein);
         }
 
         [Fact]
         public void should_calc_calory_for_Ingredient()
         {
-            Assert.Equal("10 J", flour.GetCalory());
+            CaloryVisitor caloryVisitor = new CaloryVisitor();
+            flour.GetNutrition(caloryVisitor);
+            Assert.Equal("10 J", caloryVisitor.Calory);
         }
 
         [Fact]

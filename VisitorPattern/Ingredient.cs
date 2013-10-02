@@ -16,19 +16,9 @@
                 public void Smell() {}
         # endregion
 
-        public int GetHealthRating()
+        public void GetNutrition(IVisitor visitor)
         {
-            return new HealthRatingVisitor().VisitHealthRating(this);
-        }
-
-        public string GetProtein()
-        {
-            return new ProteinVisitor().VisitProtein(this);
-        }
-
-        public string GetCalory()
-        {
-            return new CaloryVisitor().VisitCalory(this);
+            visitor.Visit(this);
         }
     }
 }
